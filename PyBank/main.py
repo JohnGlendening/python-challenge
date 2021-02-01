@@ -18,6 +18,7 @@ with open(file_path) as csvfile:
     print(f"CSV Header: {csv_header}")
 
     for row in csvreader:
+        total_months = total_months + 1
         print(row)
 
 
