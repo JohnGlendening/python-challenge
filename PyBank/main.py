@@ -21,6 +21,9 @@ with open(file_path) as csvfile:
         total_months = total_months + 1
         print(row)
 
+print("financial Analysis")
+print("----------------------------------")
+print(f"total_months: {total_months}")
 
 # results should look like
 # Financial Analysis
