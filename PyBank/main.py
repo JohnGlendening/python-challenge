@@ -20,10 +20,12 @@ with open(file_path) as csvfile:
     for row in csvreader:
         total_months = total_months + 1
         print(row)
-
+        total_profit_loss_amount = float(row[1])
+        print(row)
 print("financial Analysis")
 print("----------------------------------")
 print(f"total_months: {total_months}")
+print(f"total_profit_loss_amount: {total_profit_loss_amount}")
 
 # results should look like
 # Financial Analysis
