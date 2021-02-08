@@ -1,6 +1,7 @@
 import csv
 # The total number of months included in the dataset
 total_months = 0
+
 # The net total amount of "Profit/Losses" over the entire period
 total_profit_loss_amount = 0
 # Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
@@ -24,7 +25,7 @@ with open(file_path) as csvfile:
         date = row[0]
         total = float(row[1])
         profit = float(row[1])
-
+        initial_profit = 0
     # The net total amount of "Profit/Losses" over the entire period
         current_month_profit_loss = int(row[1])
         total_profit_loss_amount += current_month_profit_loss
@@ -43,7 +44,7 @@ print("financial Analysis")
 print("----------------------------------")
 print(f"total_months: {total_months}")
 print(f"Total: {total_profit_loss_amount}")
-print(f"Average  Change: {average_profit_loss}")
+print(f"Average Change: {average_profit_loss}")
 print(
     f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})")
 print(
@@ -54,8 +55,8 @@ with open(out_file, 'w') as outputFile:
     outputFile.write("financial Analysis\n"),
     outputFile.write("----------------------------------\n")
     outputFile.write(f"total_months: {total_months}\n")
-    outputFile.write(f"Total: {total_profit_loss_amount}\n")
-    outputFile.write(f"Average  Change: {average_profit_loss}\n")
+    outputFile.write(f"Total: ${total_profit_loss_amount}\n")
+    outputFile.write(f"Average  Change: ${average_profit_loss}\n")
     outputFile.write(
         f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})\n"),
     outputFile.write(
