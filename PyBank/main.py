@@ -11,6 +11,7 @@ greatest_increase = {"date": "", "amount": 0}
 greatest_decrease = {"date": "", "amount": 0}
 
 file_path = "./Resources/budget_data.csv"
+out_file = "./Analysis/output.txt"
 
 with open(file_path) as csvfile:
     csvreader = csv.reader(csvfile)
@@ -43,6 +44,16 @@ print(
     f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})")
 print(
     f"Greatest Decrease in Profits: {greatest_decrease['date']} (${greatest_decrease['amount']})")
+
+# write to a file
+with open(out_file, 'w') as outputFile:
+    outputFile.write("financial Analysis\n"),
+    outputFile.write("----------------------------------\n")
+    outputFile.write(f"total_months: {total_months}\n")
+    outputFile.write(
+        f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})\n"),
+    outputFile.write(
+        f"Greatest Decrease in Profits: {greatest_decrease['date']} (${greatest_decrease['amount']})")
 
 # results should look like
 # Financial Analysis
