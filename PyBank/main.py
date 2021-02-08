@@ -8,7 +8,7 @@ average_profit_loss = 0.00
 # The greatest increase in profits(date and amount) over the entire period
 greatest_increase = {"date": "", "amount": 0}
 # The greatest decrease in losses(date and amount) over the entire period
-greatest_decrease = {}
+greatest_decrease = {"date": "", "amount": 0}
 
 file_path = "./Resources/budget_data.csv"
 
@@ -35,11 +35,14 @@ with open(file_path) as csvfile:
         if (profit < greatest_decrease["amount"]):
             greatest_decrease["date"] = date
             greatest_decrease["amount"] = profit
+
 print("financial Analysis")
 print("----------------------------------")
 print(f"total_months: {total_months}")
 print(
     f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})")
+print(
+    f"Greatest Decrease in Profits: {greatest_decrease['date']} (${greatest_decrease['amount']})")
 
 # results should look like
 # Financial Analysis
