@@ -7,6 +7,7 @@ candidate = []
 total_votes = 0
 
 file_path = "./Resources/election_data.csv"
+out_file = "./Analysis/output.txt"
 
 with open(file_path) as csvfile:
     csvreader = csv.reader(csvfile)
@@ -44,7 +45,7 @@ with open(out_file, 'w') as outputFile:
     outputFile.write(f"Total Votes: {total_votes}\n")
     outputFile.write(f"---------------------------------\n")
     outputFile.write(f"Percentage: {percentage}\n")
-    outputFile.write(f"Winner: {winner}\n"),
+    outputFile.write(f"Winner: {winner}"),
 
 
 # As an example, your analysis should look similar to the one below:
