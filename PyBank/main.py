@@ -1,7 +1,6 @@
 import csv
 # The total number of months included in the dataset
 total_months = 0
-
 # The net total amount of "Profit/Losses" over the entire period
 total_profit_loss_amount = 0
 # Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
