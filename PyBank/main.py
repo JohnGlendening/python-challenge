@@ -2,7 +2,7 @@ import csv
 # The total number of months included in the dataset
 total_months = 0
 # The net total amount of "Profit/Losses" over the entire period
-total_profit_loss_amount = 0.00
+total_profit_loss_amount = 0
 # Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
 average_profit_loss = 0.00
 # The greatest increase in profits(date and amount) over the entire period
@@ -22,10 +22,12 @@ with open(file_path) as csvfile:
      # The total number of months included in the dataset
         total_months = total_months + 1
         date = row[0]
+        total = float(row[1])
         profit = float(row[1])
 
     # The net total amount of "Profit/Losses" over the entire period
-
+        current_month_profit_loss = int(row[1])
+        total_profit_loss_amount += current_month_profit_loss
     # Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
 
     # The greatest increase in profits(date and amount) over the entire period
@@ -40,6 +42,7 @@ with open(file_path) as csvfile:
 print("financial Analysis")
 print("----------------------------------")
 print(f"total_months: {total_months}")
+print(f"Total: {total_profit_loss_amount}")
 print(
     f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})")
 print(
