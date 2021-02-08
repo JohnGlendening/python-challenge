@@ -53,6 +53,7 @@ with open(out_file, 'w') as outputFile:
     outputFile.write("financial Analysis\n"),
     outputFile.write("----------------------------------\n")
     outputFile.write(f"total_months: {total_months}\n")
+    outputFile.write(f"Total: {total_profit_loss_amount}\n")
     outputFile.write(
         f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})\n"),
     outputFile.write(
