@@ -1,30 +1,41 @@
 import csv
 
-votes = []
-county = []
-candidates = []
-khan = []
-correy = []
-li = []
-otooley = []
+vote_count = {}
+percentage = {}
+candidate = []
+
+total_votes = 0
 
 file_path = "./Resources/election_data.csv"
 
 with open(file_path) as csvfile:
     csvreader = csv.reader(csvfile)
-    csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    next(csvreader, None)
 
     for row in csvreader:
-        votes.append(int(row[0]))
-        county.append(row[1])
-        candidates.append(row[2])
+        total_votes += 1
+        if row[2] in candidate and row[2] not in "Candidate":
+            vote_count[row[2]] = vote_count[row[2]] + 1
+        # else create new spot in list for candidate
+        else:
+            candidate.append(row[2])
+            vote_count[row[2]] = 1
 
-        print(row)
+# Percentage calculation
+for key, value in vote_count.items():
+    percentage[key] = str(round((value/total_votes)*100, 3)
+                          ) + "% ("+str(value) + ")"
+
+# winner
+winner = max(vote_count.keys(), key=(lambda k: vote_count[k]))
+
 
 print("Election Results")
 print("----------------------------------")
-print(f"total:_votes {total_months}")
+print(f"Total Votes: {total_votes}")
+print(f"---------------------------------")
+print(f"Percentage: {percentage}")
+print(f"Winner: {winner}")
 
 
 # As an example, your analysis should look similar to the one below:
