@@ -1,13 +1,30 @@
 import csv
-# The total number of votes cast
 
-# A complete list of candidates who received votes
+votes = []
+county = []
+candidates = []
+khan = []
+correy = []
+li = []
+otooley = []
 
-# The percentage of votes each candidate won
+file_path = "./Resources/election_data.csv"
 
-# The total number of votes each candidate won
+with open(file_path) as csvfile:
+    csvreader = csv.reader(csvfile)
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
 
-# The winner of the election based on popular vote.
+    for row in csvreader:
+        votes.append(int(row[0]))
+        county.append(row[1])
+        candidates.append(row[2])
+
+        print(row)
+
+print("Election Results")
+print("----------------------------------")
+print(f"total:_votes {total_months}")
 
 
 # As an example, your analysis should look similar to the one below:
