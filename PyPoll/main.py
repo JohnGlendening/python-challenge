@@ -37,6 +37,15 @@ print(f"---------------------------------")
 print(f"Percentage: {percentage}")
 print(f"Winner: {winner}")
 
+# write to a file
+with open(out_file, 'w') as outputFile:
+    outputFile.write("Election Results\n"),
+    outputFile.write("----------------------------------\n")
+    outputFile.write(f"Total Votes: {total_votes}\n")
+    outputFile.write(f"---------------------------------\n")
+    outputFile.write(f"Percentage: {percentage}\n")
+    outputFile.write(f"Winner: {winner}\n"),
+
 
 # As an example, your analysis should look similar to the one below:
 # Election Results
