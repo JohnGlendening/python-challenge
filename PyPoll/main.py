@@ -45,6 +45,7 @@ with open(out_file, 'w') as outputFile:
     outputFile.write(f"Total Votes: {total_votes}\n")
     outputFile.write(f"---------------------------------\n")
     outputFile.write(f"Candidates: {percentage}\n")
+    outputFile.write(F"---------------------------------\n")
     outputFile.write(f"Winner: {winner}"),
 
 
