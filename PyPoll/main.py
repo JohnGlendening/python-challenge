@@ -1,4 +1,5 @@
 import csv
+import os
 
 vote_count = {}
 percentage = {}
@@ -36,6 +37,7 @@ print("----------------------------------")
 print(f"Total Votes: {total_votes}")
 print(f"---------------------------------")
 print(f"Percentage: {percentage}")
+print(f"---------------------------------")
 print(f"Winner: {winner}")
 
 # write to a file
