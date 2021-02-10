@@ -13,54 +13,70 @@ greatest_decrease = {"date": "", "amount": 0}
 file_path = "./Resources/budget_data.csv"
 out_file = "./Analysis/output.txt"
 
+# Set variables
+total_months = 0
+total_revenue = 0
+revenue = []
+previous_revenue = 0
+month_of_change = []
+revenue_change = 0
+greatest_decrease = ["", 9999999]
+greatest_increase = ["", 0]
+revenue_change_list = []
+revenue_average = 0
+
+
+# open the csv file
 with open(file_path) as csvfile:
-    csvreader = csv.reader(csvfile)
-    csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    csvreader = csv.DictReader(csvfile)
 
+    # Loop through to find total months
     for row in csvreader:
-     # The total number of months included in the dataset
-        total_months = total_months + 1
-        date = row[0]
-        total = float(row[1])
-        profit = float(row[1])
-        initial_profit = 0
-    # The net total amount of "Profit/Losses" over the entire period
-        current_month_profit_loss = int(row[1])
-        total_profit_loss_amount += current_month_profit_loss
-    # Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
 
-    # The greatest increase in profits(date and amount) over the entire period
-        if (profit > greatest_increase["amount"]):
-            greatest_increase["date"] = date
-            greatest_increase["amount"] = profit
-    # The greatest decrease in losses(date and amount) over the entire period
-        if (profit < greatest_decrease["amount"]):
-            greatest_decrease["date"] = date
-            greatest_decrease["amount"] = profit
+        # Count the total of months
+        total_months += 1
 
-print("financial Analysis")
-print("----------------------------------")
-print(f"total_months: {total_months}")
-print(f"Total: {total_profit_loss_amount}")
-print(f"Average Change: {average_profit_loss}")
-print(
-    f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})")
-print(
-    f"Greatest Decrease in Profits: {greatest_decrease['date']} (${greatest_decrease['amount']})")
+        # Calculate the total revenue over the entire period
+        total_revenue = total_revenue + int(row["Profit/Losses"])
 
-# write to a file
-with open(out_file, 'w') as outputFile:
-    outputFile.write("financial Analysis\n"),
-    outputFile.write("----------------------------------\n")
-    outputFile.write(f"total_months: {total_months}\n")
-    outputFile.write(f"Total: ${total_profit_loss_amount}\n")
-    outputFile.write(f"Average  Change: ${average_profit_loss}\n")
-    outputFile.write(
-        f"Greatest Increase in Profits: {greatest_increase['date']} (${greatest_increase['amount']})\n"),
-    outputFile.write(
-        f"Greatest Decrease in Profits: {greatest_decrease['date']} (${greatest_decrease['amount']})")
+        # Calculate the average change in revenue between months over the entire period
+        revenue_change = float(row["Profit/Losses"]) - previous_revenue
+        previous_revenue = float(row["Profit/Losses"])
+        revenue_change_list = revenue_change_list + [revenue_change]
+        month_of_change = [month_of_change] + [row["Date"]]
 
+        # The greatest increase in revenue (date and amount) over the entire period
+        if revenue_change > greatest_increase[1]:
+            greatest_increase[1] = revenue_change
+            greatest_increase[0] = row['Date']
+
+        # The greatest decrease in revenue (date and amount) over the entire period
+        if revenue_change < greatest_decrease[1]:
+            greatest_decrease[1] = revenue_change
+            greatest_decrease[0] = row['Date']
+    revenue_average = sum(revenue_change_list)/len(revenue_change_list)
+
+    print("Financial Analysis\n")
+    print("---------------------\n")
+    print("Total Months: %d\n" % total_months)
+    print("Total Revenue: $%d\n" % total_revenue)
+    print("Average Revenue Change $%d\n" % revenue_average)
+    print("Greatest Increase in Revenue: %s ($%s)\n" %
+          (greatest_increase[0], greatest_increase[1]))
+    print("Greatest Decrease in Revenue: %s ($%s)\n" %
+          (greatest_decrease[0], greatest_decrease[1]))
+
+# write changes to csv
+with open(out_file, 'w') as file:
+    file.write("Financial Analysis\n")
+    file.write("---------------------\n")
+    file.write("Total Months: %d\n" % total_months)
+    file.write("Total Revenue: $%d\n" % total_revenue)
+    file.write("Average Revenue Change $%d\n" % revenue_average)
+    file.write("Greatest Increase in Revenue: %s ($%s)\n" %
+               (greatest_increase[0], greatest_increase[1]))
+    file.write("Greatest Decrease in Revenue: %s ($%s)\n" %
+               (greatest_decrease[0], greatest_decrease[1]))
 # results should look like
 # Financial Analysis
 # ----------------------------
